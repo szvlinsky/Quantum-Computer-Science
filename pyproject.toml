@@ -12,7 +12,8 @@ dependencies = [
     "numpy",
     "matplotlib",
     "ipykernel",
-    "jupyter"
+    "jupyter",
+    "sympy (>=1.14.0,<2.0.0)"
 ]
 
 
