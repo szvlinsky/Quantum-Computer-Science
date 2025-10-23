@@ -20,15 +20,15 @@
 
 ## Skróty klawiszowe
 
-| Działanie | Skrót klawiszowy | Kontekst |
-|-|-|-|
-| Zakończ proces w terminalu         | `Ctrl + C`             | Terminal                 |
-| Wyczyść ekran terminala            | `Ctrl + L`             | Terminal                 |
-| Nowe okno terminala                | `Ctrl + Alt + T`       | System                   |
-| Przełącz okno                      | `Alt + Tab`            | System                   |
-| Pokaż wszystkie okna               | `Super + W`            | System (GNOME)           |
-| Przełącz obszar roboczy w prawo    | `Ctrl + Alt + →`       | System (GNOME/KDE)       |
-| Przełącz obszar roboczy w lewo     | `Ctrl + Alt + ←`       | System (GNOME/KDE)       |
-| Zablokuj ekran                     | `Super + L`            | System                   |
+| Działanie | Skrót klawiszowy |
+|-|-|
+| Zakończ proces w terminalu | `Ctrl + C` |
+| Wyczyść ekran terminala | `Ctrl + L` | 
+| Nowe okno terminala | `Ctrl + Alt + T` | 
+| Przełącz okno | `Alt + Tab` | 
+| Pokaż wszystkie okna | `Super + W` | 
+| Przełącz obszar roboczy w prawo | `Ctrl + Alt + →` | 
+| Przełącz obszar roboczy w lewo | `Ctrl + Alt + ←` | 
+| Zablokuj ekran | `Super + L` | 
 
 ---
