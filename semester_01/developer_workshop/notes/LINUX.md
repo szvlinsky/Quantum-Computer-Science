@@ -15,7 +15,9 @@
 | Sprawdzenie lokalizacji | `pwd` | Pokazuje pełną ścieżkę bieżącego katalogu |
 | Wyszukiwanie pliku | `find . -name <nazwa>` | Szuka pliku o podanej nazwie |
 | Aktualizacja systemu | `sudo apt update && sudo apt upgrade` | Aktualizuje pakiety systemowe |
-
+| Porównywanie pliku | `diff` | porównywanie plików tekstowych linia po linii |
+| Szybkie porównywanie | `comm` | tyle kolumn ile linii |
+|Kontrola czasu|`time`|pokazuje czas trwania|
 ---
 
 ## Skróty klawiszowe
@@ -32,3 +34,27 @@
 | Zablokuj ekran | `Super + L` | 
 
 ---
+
+## Parametry
+
+### diff - porównywanie tekstu
+| parametr | opis | 
+|-|-|
+| -u | tryb ujednolicony |
+| -c | tryb kontekstowy |
+| -b | igonruje znaki białe |
+| -w | całkowicie ignoruje białe |
+| -B | ignoruje puste linie przy wyliczaniu różnic|
+| -y | dwie kolumny |
+| -Nur | tworzenie łatki |
+
+## tar - archiwum i kompresja
+| parametr | opis | 
+|-|-|
+|c|create|
+|v|informacje pomocnicze|
+|f <nazwa>| nazwa archiwum|
+|x|rozpakowanie archiwum|
+|z|spakowanie archiwum do gzip|
+|j|spakowanie do .bz2|
+|J|spakowanie do xz|
