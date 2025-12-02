@@ -6,22 +6,22 @@ int main() {
     cin >> n;
     int a[1000];
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++) {
         cin >> a[i];
     }
 
-    for (int i = 1; i < n; ++i) {
+    for (int i = 1; i < n; i++) {
         k = a[i];
-        j = i - 1;
+        j = i; 
 
-        while (j >= 0 && a[j] > k) {
-            a[j + 1] = a[j];
+        while (j > 0 && k < a[j - 1]) {
+            a[j] = a[j - 1];
             j--;
         }
-        a[j + 1] = k;
+        a[j] = k;
     }
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) { 
         cout << a[i] << " ";
     }
     return 0;
