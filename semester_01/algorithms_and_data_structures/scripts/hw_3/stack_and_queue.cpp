@@ -44,6 +44,55 @@ public:
     }
 };
 
+class Queue {
+private:
+    int data[6];
+    int length = 6;
+    int head = 0;
+    int tail = 0;
+public:
+    void enqueue(int k) {
+        if ((tail + 1) % length == head) {
+            cout << "nadmiar" << endl;
+            return;
+        }
+        data[tail] = k;
+        tail = (tail + 1) % length;
+    }
+
+    void dequeue() {
+        if (head != tail) {
+            head = (head + 1) % length;
+        }
+    }
+
+    bool queue_empty() {
+        return head == tail;
+    }
+
+    void write() { // WRITE(Q)
+        int i = head;
+        while (i != tail) {
+            cout << data[i] << " ";
+            i = (i + 1) % length;
+        }
+        cout << endl;
+    }
+
+    void write_dequeue() { // WRITE(DEQUEUE(Q))
+        if (head == tail) {
+            cout << "niedomiar" << endl;
+            return;
+        }
+        cout << data[head] << endl;
+        dequeue();
+    }
+
+    void write_empty() { // WRITE(QUEUE-EMPTY(Q))
+        cout << boolalpha << queue_empty() << endl;
+    }
+};
+
 
 
 int main() {
@@ -75,4 +124,32 @@ int main() {
     s.write_empty(); // true
 
     // QUEUE
+    Queue q;
+
+    q.enqueue(1);
+    q.enqueue(2);
+    q.write();
+
+    q.enqueue(3);
+    q.write();
+
+    q.write_empty(); // false
+    q.write_dequeue();
+    q.write_dequeue();
+    q.enqueue(4);
+    q.enqueue(5);
+    q.enqueue(6);
+    q.enqueue(7);
+    q.enqueue(8); // nadmiar
+
+    q.write();
+    q.write_dequeue();
+    q.write_dequeue();
+    q.write_dequeue();
+    q.write_dequeue();
+    q.write_dequeue();
+    q.write_dequeue(); // niedomiar
+
+    q.write();
+    q.write_empty(); // true
 }
