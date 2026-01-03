@@ -4,11 +4,11 @@ param (
     [switch]$Detailed
 )
 # KONFIGURACJA
-$CacheDir = Join-Path $HOME ".cache/mymeteo" # Dynamiczna sciezka do katalogu domowego uzytkownika
-$StationCoordsFile = Join-Path $CacheDir "stations_coords.json"
+$CacheDir = Join-Path $HOME ".cache/meteo" # Dynamiczna sciezka do katalogu domowego uzytkownika
+$StationsFile = Join-Path $CacheDir "stations.json"
 $ImgwApiUrl = "https://danepubliczne.imgw.pl/api/data/synop"
 
-# USTAWIENIA NAGLOWKOW
+# USTAWIENIA NAGLOWKOW API
 $UserAgent = "MeteoProject$(Get-Random)"
 $Headers = @{ "User-Agent" = $UserAgent; "Accept-Language" = "pl" }
 
@@ -38,7 +38,9 @@ if (Test-Path $CityCacheFile) {
 } 
 else {
     if ($Detailed) { Write-Host "Pobieranie wspolrzednych z Nominatim dla: $City" }
+
     Start-Sleep -Seconds 1 # Ochrona przed banem
+
     $Url = "https://nominatim.openstreetmap.org/search?city=$([Uri]::EscapeDataString($City))&format=json&countrycodes=pl&limit=1"
     try {
         $Resp = Invoke-RestMethod -Uri $Url -Headers $Headers -ErrorAction Stop
@@ -52,8 +54,8 @@ else {
 }
 
 # BAZA STACJI
-if (-not (Test-Path $StationCoordsFile)) {
-    Write-Host "Budowanie bazy stacji (tylko raz). Prosze czekac..." -ForegroundColor Cyan
+if (-not (Test-Path $StationsFile)) {
+    Write-Host "Prosze czekac..." -ForegroundColor Cyan
     $Stations = Invoke-RestMethod -Uri $ImgwApiUrl
     $StationCoords = @()
     foreach ($S in $Stations) {
@@ -65,9 +67,9 @@ if (-not (Test-Path $StationCoordsFile)) {
             if ($SR) { $StationCoords += @{ id = $S.id_stacji; name = $S.stacja; lat = [double]$SR[0].lat; lon = [double]$SR[0].lon } }
         } catch { }
     }
-    $StationCoords | ConvertTo-Json | Set-Content $StationCoordsFile
+    $StationCoords | ConvertTo-Json | Set-Content $StationsFile
 } else {
-    $StationCoords = Get-Content $StationCoordsFile | ConvertFrom-Json
+    $StationCoords = Get-Content $StationsFile | ConvertFrom-Json
 }
 
 # SZUKANIE NAJBLIZSZEJ STACJI
@@ -88,10 +90,10 @@ if (Test-Path $WeatherCache) {
 }
 
 if ($UseCache) {
-    if ($Detailed) { Write-Host "Pogoda z cache (sprzed $([Math]::Round($Age.TotalMinutes)) min)." }
+    if ($Detailed) { Write-Host "Pogoda z sprzed $([Math]::Round($Age.TotalMinutes)) min." }
     $Data = Get-Content $WeatherCache | ConvertFrom-Json
 } else {
-    if ($Detailed) { Write-Host "Pobieranie nowej pogody z IMGW..." }
+    if ($Detailed) { Write-Host "Pobieranie pogody z IMGW..." }
     $Data = Invoke-RestMethod -Uri "$ImgwApiUrl/id/$($Nearest.id)"
     $Data | ConvertTo-Json | Set-Content $WeatherCache
 }
