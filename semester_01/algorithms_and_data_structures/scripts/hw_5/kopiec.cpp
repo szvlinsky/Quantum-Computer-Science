@@ -6,7 +6,7 @@ class Heap {
     int len;
     int heapSize;
 
-    int parent(int i) { return (i - 1) / 2; }
+    int parent(int i) { return (i - 1) / 2; } // przeniesione z sekcji metod
     int left(int i) { return 2 * i + 1; }
     int right(int i) { return 2 * i + 2; }
 
@@ -87,13 +87,13 @@ int main() {
 
     Heap h(tab, size);
 
-    cout << h;                     // 16 14 10 8 7 9 3 2 4 1
+    cout << h;
     h.insert(15);
-    cout << h;                     // 16 15 10 8 14 9 3 2 4 1 7
-    cout << h.maximum() << endl;   // 16
-    cout << h;                     
-    cout << h.extractMax() << endl;// 16
-    cout << h;                     // 15 14 10 8 7 9 3 2 4 1
+    cout << h;
+    cout << h.maximum() << endl;
+    cout << h;
+    cout << h.extractMax() << endl;
+    cout << h;
     h.increaseKey(4, 19);
-    cout << h;                     // 19 15 10 14 7 9 3 2 4 1
+    cout << h;
 }
