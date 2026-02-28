@@ -8,3 +8,6 @@ __pycache__
 *.exe
 *.ipynb
 *.md
+*.csv
+*.json
+.gitignore
